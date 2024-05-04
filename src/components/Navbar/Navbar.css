@@ -1,0 +1,19 @@
+.Navbar {
+  width: 18vw;
+  height: 100vh;
+  display:flex;
+  justify-content: center;
+  /* align-items:center; */
+  background-color: gray;
+  padding: 40px 0;
+
+   
+
+  li{
+    list-style-type: none;
+    margin: 10px 0px;
+    font-size: 12px;
+  }
+
+
+}

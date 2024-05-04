@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  /* padding: 4%; */
+}
+/* .container{
+width: 18vw;
+min-height: 100vh;
+background: #c01414;
+} */
+.pagecontainer {
+  display: flex;
+  height: 100vh;
+  background-color: aquamarine;
+}
+.homepage {
+  width: 82vw;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.post-wrapper {
+  background-color: bisque;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: scroll;
+
+  .post {
+    background-color: aliceblue;
+    width: 30%;
+    padding: 20px;
+    margin: 20px;
+
+    h1 {
+      color: cadetblue;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    p {
+      color: black;
+      margin-top: 10px;
+    }
+  }
+}
