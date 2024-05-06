@@ -62,9 +62,9 @@ const home = () => {
     }
   };
 
-  const onClickAll = () => {
-    setStdList(studentArray);
-  };
+  // const onClickAll = () => {
+  //   setStdList(studentArray);
+  // };
   // const alertBtn=()=>{
   //   alert(studentArray)
   // }

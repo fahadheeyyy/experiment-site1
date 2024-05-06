@@ -4,8 +4,6 @@ import "./login.css";
 import userImg from "../assets/user.png";
 import passwordImg from "../assets/password.png";
 
-
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,10 +22,15 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSignUp=(e)=>{
+  const handleSignUp = (e) => {
     e.preventDefault();
-    navigate("/signup")
-  }
+    navigate("/signup");
+  };
+
+  const handleContactUs = (e) => {
+    e.preventDefault();
+    navigate("/contactus");
+  };
   // const handleLogin = () => {
   //   localStorage.setItem("loginTime", new Date().getTime());
   // };
@@ -87,9 +90,10 @@ const Login = () => {
             <div className="icon-image">
               <img src={userImg} alt="" height="20px" width="20px" />
             </div>
-
           </div>
-          {isError && isError.emailError && <p className="error-msg">{isError.emailError}</p>}
+          {isError && isError.emailError && (
+            <p className="error-msg">{isError.emailError}</p>
+          )}
 
           <div className="input-container">
             <input
@@ -114,11 +118,21 @@ const Login = () => {
             login
           </button>
           {/* </Link> */}
-        </div>  
+        </div>
         {/* 2nd div ends */}
         <div className="signup-wrapper">
-          <p>Not a member?</p>
-          <button className="signup1-button" onClick={handleSignUp}> sign up</button>
+          <p>
+            Not a member?{" "}
+            <button className="signup1-button" onClick={handleSignUp}>
+              sign up
+            </button>
+          </p>
+          <p>
+            Cannot Login?
+            <button className="signup1-button" onClick={handleContactUs}>
+              Contact Us
+            </button>
+          </p>
         </div>
       </div>
     </div>

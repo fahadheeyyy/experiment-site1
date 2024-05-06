@@ -28,17 +28,9 @@ h2 {
 }
 
 .error-msg {
-  transform: translateY(-8px);
+  /* transform: translateY(-8px); */
   font-size: 12px;
   color: #840a0a;
-}
-
-form {
-  font-size: small;
-  font-family: poppins-small;
-  flex-direction: column;
-  align-items: center;
-  display: flex;
 }
 
 label {
@@ -52,7 +44,7 @@ label {
   border-left: 0;
   border-right: 0;
   border-radius: 0;
-  width: 343px;
+  /* width: 343px; */
 }
 
 .login-button {
@@ -83,11 +75,11 @@ td {
   border: 1px solid black;
 }
 
-.input-container {
-  width: 90%;
+/* .input-container {
+  width: 305px;
   height: 60px;
   position: relative;
-}
+} */
 .icon-image {
   width: 20px;
   height: 20px;
@@ -102,14 +94,12 @@ td {
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 109%;
   height: 40px;
   z-index: 99;
   padding-left: 40px;
   cursor: pointer;
 }
-
-
 
 .signup-wrapper {
   display: flex;
@@ -119,12 +109,12 @@ td {
     font-family: sans-serif;
     font-size: 14px;
   }
- 
 }
-.signup1-button{
+.signup1-button {
   border: none;
   background-color: #fff;
   margin-left: 5px;
+  margin-right: 10px;
   font-size: 14px;
   cursor: pointer;
 }

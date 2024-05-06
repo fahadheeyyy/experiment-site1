@@ -17,6 +17,7 @@ background: #c01414;
 }
 .homepage {
   width: 82vw;
+  overflow: scroll;
 }
 
 table,
@@ -29,7 +30,7 @@ td {
   background-color: bisque;
   min-height: 100vh;
   padding: 20px;
-  overflow: scroll;
+  /* overflow: scroll; */
 
   .post {
     background-color: aliceblue;
