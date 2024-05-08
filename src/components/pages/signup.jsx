@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {useNavigate } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import userImg from "../assets/user.png";
 import passwordImg from "../assets/password.png";
 import nameImg from "../assets/@.png";
-import "./signup.css"
+import "./signup.css";
+import emailjs from "@emailjs/browser";
 
 const signup = () => {
   const [newSignUp, setNewSignUp] = useState({
@@ -11,6 +12,8 @@ const signup = () => {
     email: "",
     password: "",
   });
+  const form1 = useRef();
+
   //   const [newPassword, setnewPassword] = useState("");
   //   const [newName, setNewName] = useState("");
 
@@ -27,24 +30,60 @@ const signup = () => {
   };
   const navigate = useNavigate();
 
-
   const handleNewSignupSubmit = (e) => {
     e.preventDefault();
     console.log("submitted", newSignUp);
     setNewSignUp({ username: "", email: "", password: "" });
-    navigate("/home")
+    navigate("/home");
   };
 
-  const handleLoginChange = (e) =>
-    {
-        e.preventDefault();
-        navigate("/")
-    } 
+  // const sendSignUpEmail = (e) => {
+  //   e.preventDefault();
+
+  //   emailjs
+  //     .sendForm("service_9bq4jiz", "template_6voxyou", form1.current, {
+  //       publicKey: "aonkVciKKo3SIltyc",
+  //     })
+  //     .then(
+  //       () => {
+  //         console.log("SUCCESS!");
+  //       },
+  //       (error) => {
+  //         console.log("FAILED...", error.text);
+  //       }
+  //     );
+  // };
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_9bq4jiz", "template_6voxyou", form1.current, {
+        publicKey: "aonkVciKKo3SIltyc",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
+
+  const handleLoginChange = (e) => {
+    e.preventDefault();
+    navigate("/");
+  };
+  const performMultipleFunctions = (e) => {
+    e.preventDefault();
+    handleNewSignupSubmit(e);
+    sendEmail(e);
+  };
   return (
     <div className="signup-wrap">
       <div className="signup-container">
         <h2>Sign Up</h2>
-        {/* <form onSubmit={handleNewSignupSubmit}> */}
+        <form ref={form1}>
           <div>
             <div className="input-container">
               <input
@@ -94,20 +133,19 @@ const signup = () => {
               </div>
             </div>
 
-            {/* {isError && isError.passwordError && (
-            <p className="error-msg">{isError.passwordError}</p>
-          )} */}
-            {/* <Link to="/home"> */}
-            <button  className="signup-button" onClick={handleNewSignupSubmit}>
+            <button
+              className="signup-button"
+              onClick={performMultipleFunctions}
+            >
               signup
             </button>
-            {/* </Link> */}
           </div>
-          {/* 2nd div ends */}
-        {/* </form> */}
+        </form>
         <div className="login-wrapper">
-            <p>already signed in?</p>
-<button className="login1-button"onClick={handleLoginChange}>login</button>
+          <p>already signed in?</p>
+          <button className="login1-button" onClick={handleLoginChange}>
+            login
+          </button>
         </div>
       </div>
     </div>
