@@ -1,28 +1,23 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import userImg from "../assets/user.png";
-import passwordImg from "../assets/password.png";
-import nameImg from "../assets/@.png";
+import userImg from "../components/assets/user.png";
+import passwordImg from "../components/assets/password.png";
+import nameImg from "../components/assets/@.png";
 import "./signup.css";
 import emailjs from "@emailjs/browser";
+import { addDoc, collection, getDocs, query, where } from "@firebase/firestore";
+import { firestore } from "./firebase";
 
-const signup = () => {
+const Signup = () => {
   const [newSignUp, setNewSignUp] = useState({
     username: "",
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
   const form1 = useRef();
 
-  //   const [newPassword, setnewPassword] = useState("");
-  //   const [newName, setNewName] = useState("");
-
-  //   const handleNewEmailChange = (e) => {
-  //     setNewEmail(e.target.value);
-  //   };
-  //   const handleNewPasswordChange = (e) => {
-  //     setnewPassword(e.target.value);
-  //   };
+  const collectionRef = collection(firestore, "signup data");
 
   const handleNewSignUpChange = (e) => {
     const { name, value } = e.target;
@@ -30,29 +25,42 @@ const signup = () => {
   };
   const navigate = useNavigate();
 
-  const handleNewSignupSubmit = (e) => {
+  const handleNewSignupSubmit = async (e) => {
     e.preventDefault();
-    console.log("submitted", newSignUp);
-    setNewSignUp({ username: "", email: "", password: "" });
-    navigate("/home");
+    setError(""); // Clear any previous errors
+
+    try {
+      // Check if the email already exists
+      const q = query(collectionRef, where("keys.email", "==", newSignUp.email));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // Username already exists
+        setError("email already exists. Please choose another one.");
+        return;
+      }
+
+      // If username does not exist, proceed with signup
+      const dataToAdd = {
+        id: newSignUp.username,
+        keys: {
+          username: newSignUp.username,
+          email: newSignUp.email,
+          password: newSignUp.password,
+        },
+      };
+
+      const docRef = await addDoc(collectionRef, dataToAdd);
+      console.log("Document written with ID:", docRef.id);
+
+      // Clear the form
+      setNewSignUp({ username: "", email: "", password: "" });
+      navigate("/home");
+    } catch (error) {
+      console.error("Error adding document:", error);
+    }
   };
 
-  // const sendSignUpEmail = (e) => {
-  //   e.preventDefault();
-
-  //   emailjs
-  //     .sendForm("service_9bq4jiz", "template_6voxyou", form1.current, {
-  //       publicKey: "aonkVciKKo3SIltyc",
-  //     })
-  //     .then(
-  //       () => {
-  //         console.log("SUCCESS!");
-  //       },
-  //       (error) => {
-  //         console.log("FAILED...", error.text);
-  //       }
-  //     );
-  // };
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -74,11 +82,13 @@ const signup = () => {
     e.preventDefault();
     navigate("/");
   };
+
   const performMultipleFunctions = (e) => {
     e.preventDefault();
     handleNewSignupSubmit(e);
     sendEmail(e);
   };
+
   return (
     <div className="signup-wrap">
       <div className="signup-container">
@@ -141,6 +151,7 @@ const signup = () => {
             </button>
           </div>
         </form>
+        {error && <p className="error">{error}</p>}
         <div className="login-wrapper">
           <p>already signed in?</p>
           <button className="login1-button" onClick={handleLoginChange}>
@@ -152,4 +163,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;

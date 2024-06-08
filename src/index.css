@@ -12,12 +12,15 @@ background: #c01414;
 } */
 .pagecontainer {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   background-color: aquamarine;
+  flex-direction: column;
+  
 }
 .homepage {
-  width: 82vw;
+  /* width: 82vw; */
   overflow: scroll;
+  scrollbar-width: none;
 }
 
 table,

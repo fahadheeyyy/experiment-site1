@@ -1,0 +1,93 @@
+/* Reset some basic elements for consistency */
+.App{
+
+
+    margin: 10px;
+
+body, h1, h2, p, ul, li {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set the background color and font properties for the entire application */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  .App {
+    max-width: 800px;
+    /* margin: 0 auto; */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling the header */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Styling the product list */
+  ul {
+    list-style-type: none;
+  }
+  
+  /* Styling each product item */
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+  
+  li:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Styling the product image */
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    margin-right: 20px;
+    object-fit: cover;
+  }
+  
+  /* Styling the product details */
+  li div {
+    flex: 1;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  p {
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Styling the price */
+  p span {
+    font-weight: bold;
+    color: #000;
+  }
+}

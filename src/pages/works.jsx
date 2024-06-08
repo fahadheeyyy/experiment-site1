@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from "../Navbar/Navbar";
-import PostUI from "../post/PostUI";
+import Navbar from "../components/Navbar/Navbar";
+import PostUI from "../components/post/PostUI";
 
 const App = () => {
   const [data, setData] = useState(null);

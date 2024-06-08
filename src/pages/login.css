@@ -1,0 +1,120 @@
+.login-wrap {
+  background-image: url("../components/assets/mainbg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.login-container {
+  height: 84vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 24px;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  position: relative;
+}
+h2 {
+  /* margin-bottom: 130px; */
+  font-family: "Arial", "Helvetica", sans-serif;
+  color: black;
+}
+
+.error-msg {
+  transform: translateY(-8px);
+  font-size: 12px;
+  color: #840a0a;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 8px;
+  margin-bottom: 10px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  /* width: 343px; */
+}
+
+.login-button {
+  padding: 10px;
+  background-color: #c21ce1ba;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 305px;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-wrap {
+  height: 100vh;
+  width: 100%;
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+/* .input-container {
+  width: 305px;
+  height: 60px;
+  position: relative;
+} */
+.icon-image {
+  width: 20px;
+  height: 20px;
+  /* background-color: green; */
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 999;
+}
+
+.input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 109%;
+  height: 40px;
+  z-index: 99;
+  padding-left: 40px;
+  cursor: pointer;
+}
+
+.signup-wrapper {
+  display: flex;
+  /* justify-content: space-between; */
+  p {
+    color: #840a0a;
+    font-family: sans-serif;
+    font-size: 14px;
+  }
+}
+.signup1-button {
+  border: none;
+  background-color: #fff;
+  margin-left: 5px;
+  margin-right: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}

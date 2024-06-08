@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
-import userImg from "../assets/user.png";
-import passwordImg from "../assets/password.png";
+import userImg from "../components/assets/user.png";
+import passwordImg from "../components/assets/password.png";
+import { collection, getDocs, query, where } from "@firebase/firestore";
+import { firestore } from "./firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isError, setError] = useState({
+  const [isError, setIsError] = useState({
     emailError: null,
     passwordError: null,
   });
+  const [error, setError] = useState("");
+  const loginRef = collection(firestore, "signup data");
 
   const navigate = useNavigate();
 
@@ -31,44 +36,43 @@ const Login = () => {
     e.preventDefault();
     navigate("/contactus");
   };
-  // const handleLogin = () => {
-  //   localStorage.setItem("loginTime", new Date().getTime());
-  // };
 
-  // const app = () => {
-  //   useEffect(() => {
-  //     const loginTime = localStorage.getItem("loginTime");
-  //     const currentTime = new Date().getTime(); //gets time in milliseconds
-  //     const timeLimit = 60 * 1000; //1 minute
-
-  //     console.log('login', loginTime)
-  //     console.log('current', currentTime)
-  //     if (loginTime && currentTime - parseInt(loginTime) > timeLimit) {
-  //       localStorage.removeItem("loginTime");
-  //     }
-  //   }, []);
-  // };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setIsError({ emailError: null, passwordError: null });
 
-    if (email.toLowerCase() === "admin" && password === "1234") {
-      console.log("correct");
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
+    try {
+      // Check if the email exists
+      const q = query(loginRef, where("keys.email", "==", email));
+      const querySnapshot = await getDocs(q);
 
-      navigate("/home");
-    } else {
-      if (email.toLowerCase() !== "admin" && password !== "1234") {
-        setError({
-          emailError: "Wrong email",
-          passwordError: "wrong password",
-        });
-      } else if (email.toLowerCase() !== "admin") {
-        setError({ emailError: "Wrong email", passwordError: null });
-      } else {
-        setError({ emailError: null, passwordError: "wrong password" });
+      if (querySnapshot.empty) {
+        // Email does not exist
+        setIsError({ emailError: "Email does not exist. Please Signup" });
+        return;
       }
+
+      // Check if the password matches
+      let passwordMatch = false;
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.keys.password === password) {
+          passwordMatch = true;
+        }
+      });
+
+      if (passwordMatch) {
+        // Password matches, proceed with login
+        console.log("Login successful");
+        navigate("/home");
+      } else {
+        // Password does not match
+        setIsError({ passwordError: "Incorrect password." });
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -85,7 +89,7 @@ const Login = () => {
               value={email}
               onChange={handleEmailChange}
               required
-              placeholder="enter username"
+              placeholder="Enter email"
             />
             <div className="icon-image">
               <img src={userImg} alt="" height="20px" width="20px" />
@@ -103,7 +107,7 @@ const Login = () => {
               value={password}
               onChange={handlePasswordChange}
               required
-              placeholder="enter password"
+              placeholder="Enter password"
             />
             <div className="icon-image">
               <img src={passwordImg} alt="" height="20px" width="20px" />
@@ -113,22 +117,21 @@ const Login = () => {
           {isError && isError.passwordError && (
             <p className="error-msg">{isError.passwordError}</p>
           )}
-          {/* <Link to="/home"> */}
+          {error && <p className="error-msg">{error}</p>}
+
           <button className="login-button" onClick={handleSubmit}>
-            login
+            Login
           </button>
-          {/* </Link> */}
         </div>
-        {/* 2nd div ends */}
         <div className="signup-wrapper">
           <p>
             Not a member?{" "}
             <button className="signup1-button" onClick={handleSignUp}>
-              sign up
+              Sign up
             </button>
           </p>
           <p>
-            Cannot Login?
+            Cannot Login?{" "}
             <button className="signup1-button" onClick={handleContactUs}>
               Contact Us
             </button>
@@ -140,3 +143,14 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
+
+
+
+
+
+
+
+

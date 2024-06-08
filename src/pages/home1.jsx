@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar/Navbar";
-import PostUI from "../post/PostUI";
+import Navbar from "../components/Navbar/Navbar";
+import PostUI from "../components/post/PostUI";
+import SignupList from "./firestoreData";
 
 const home = () => {
   const student = {
@@ -14,7 +15,7 @@ const home = () => {
     { name: "c", english: "22", arbic: "30" },
     { name: "d", english: "16", arbic: "40" },
     { name: "e", english: "11", arbic: "30" },
-    { name: "f", english: "19", arbic: "40" },
+    { name:  "f", english: "19", arbic: "40" },
   ];
   const [stdList, setStdList] = useState(studentArray);
   const [isFilterActive, setFilterActive] = useState(false);
@@ -83,7 +84,6 @@ const home = () => {
                   placeholder="enter name"
                 />
               </td>
-
               <td>
                 <input
                   type="number"
@@ -112,6 +112,9 @@ const home = () => {
               <th>ARABIC</th>
               <th>ALERT BUTTON</th>
             </tr>
+            <div>
+              <SignupList />
+            </div>
 
             {stdList.map((item) => {
               return (
@@ -146,7 +149,7 @@ const home = () => {
             {isFilterActive ? "Show All" : "Show Passed"}
           </button>
 
-          <div className="post-wrapper">
+          {/* <div className="post-wrapper">
             {stdList.map((student) => {
               return (
                 <PostUI
@@ -157,7 +160,7 @@ const home = () => {
                 ></PostUI>
               );
             })}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

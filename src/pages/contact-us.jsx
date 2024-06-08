@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import "./contact-us.css";
 import { useNavigate } from "react-router-dom";
-import userImg from "./components/assets/user.png";
-import nameImg from "./components/assets/@.png";
+import userImg from "../components/assets/user.png";
+import nameImg from "../components/assets/@.png";
 // import emailjs from "emailjs"
 
 // import {handleLoginChange} from './components/pages/signup'

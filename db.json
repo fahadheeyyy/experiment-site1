@@ -1,0 +1,10 @@
+{
+    "products": [
+      { "id": 1, "name": "Yoga Mat", "price": 50, "description": "A high-quality yoga mat", "category": "Fitness", "stock": 100, "image": "https://via.placeholder.com/150" },
+      { "id": 2, "name": "Essential Oil Diffuser", "price": 30, "description": "An essential oil diffuser for aromatherapy", "category": "Wellness", "stock": 80, "image": "https://via.placeholder.com/150" },
+      { "id": 3, "name": "Organic Tea Set", "price": 45, "description": "A set of organic teas", "category": "Food & Drink", "stock": 60, "image": "https://via.placeholder.com/150" },
+      { "id": 4, "name": "Bamboo Plant", "price": 25, "description": "A small bamboo plant for your home", "category": "Home Decor", "stock": 120, "image": "https://via.placeholder.com/150" },
+      { "id": 5, "name": "Candle Set", "price": 35, "description": "A set of scented candles", "category": "Wellness", "stock": 90, "image": "https://via.placeholder.com/150" }
+    ]
+  }
+  
